@@ -2,6 +2,7 @@
 Pearson Correlation Co-efficient Program in C using Functions, Structs, and Dynamic Memory.
 
 #Functions
+
 float correlation(Values *x, Values *y, int num)
 {
   float sum_x = 0, sum_y = 0, sum_xy = 0, sum_x2 = 0, sum_y2 = 0;
