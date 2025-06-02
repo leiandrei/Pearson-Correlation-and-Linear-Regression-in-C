@@ -3,10 +3,9 @@ Pearson Correlation Co-efficient Program in C using Functions, Structs, and Dyna
 
 #Functions
 
-float correlation(Values *x, Values *y, int num)
-{
-  float sum_x = 0, sum_y = 0, sum_xy = 0, sum_x2 = 0, sum_y2 = 0;
-    // FUNCTION FOR CALCULATING CORRELATION CO-EFFICIENT
+    float correlation(Values *x, Values *y, int num)
+    {
+    float sum_x = 0, sum_y = 0, sum_xy = 0, sum_x2 = 0, sum_y2 = 0;
     
     float numerator, denominator;
 
@@ -25,4 +24,4 @@ float correlation(Values *x, Values *y, int num)
     denominator = sqrt((n * sum_x2 - sum_x * sum_x) * (n * sum_y2 - sum_y * sum_y));
 
     return numerator / denominator;
-}
+    }
