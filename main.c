@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+
 // Pearson Correlation Co-efficient Program
 // Using Structs and Dynamic Memory
 // Sample Program for Statistics
@@ -18,6 +19,11 @@ int main()
 
     printf("Enter a number of values for both x & y values: ");
     scanf("%d", &num);
+
+    if (num < 2) {
+        printf("\nThe sample size is too small.\n);
+        return 1;
+    }
 
     Values *x = malloc(num * sizeof(Values));
     Values *y = malloc(num * sizeof(Values));
