@@ -12,7 +12,7 @@ typedef struct {
 
 float correlation(Values *x, Values *y, int n);
 char *relationship_degree(float r_coefficient);
-void regression(Values *x, Values *y, int x_input, int n);
+void linear_regression(Values *x, Values *y, int x_input, int n);
 
 int main()
 {
@@ -60,7 +60,7 @@ int main()
     printf("\nEnter x-input to predict y using regression: ");
     scanf("%d", &x_predict);
 
-    regression(x, y, x_predict, num);
+    linear_regression(x, y, x_predict, num);
 
     free(x); free(y);
     return 0;
@@ -106,7 +106,7 @@ char *relationship_degree(float r_coefficient)
     }
 }
 
-void regression(Values *x, Values *y, int x_input, int n)
+void linear_regression(Values *x, Values *y, int x_input, int n)
 {
     float sum_x = 0, sum_y = 0, sum_xy = 0, sum_x2 = 0, sum_y2 = 0;
 
