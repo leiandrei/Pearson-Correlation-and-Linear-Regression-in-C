@@ -10,20 +10,16 @@ typedef struct {
     float data;
 } Values;
 
-float correlation(Values *x, Values *y, int num);
+float correlation(Values *x, Values *y, int n);
 char *relationship_degree(float r_coefficient);
+void regression(Values *x, Values *y, int x_input, int n);
 
 int main()
 {
-    int num;
+    int num, x_predict;
 
     printf("Enter a number of values for both x & y values: ");
     scanf("%d", &num);
-
-    if (num < 2) {
-        printf("\nThe sample size is too small.\n);
-        return 1;
-    }
 
     Values *x = malloc(num * sizeof(Values));
     Values *y = malloc(num * sizeof(Values));
@@ -47,7 +43,9 @@ int main()
 
     float r = correlation(x, y, num);
 
-    printf("\nPearson Correlation Co-efficient: %f\n", r);
+    printf("\n=== Correlation Co-efficient Results ===\n");
+
+    printf("\nPearson Correlation Co-efficient: %.2f\n", r);
 
     if (r > 0) {
         printf("Both x and y values have a positive correlation\n");
@@ -58,6 +56,11 @@ int main()
     }
 
     printf("Degree of Relationship: %s\n", relationship_degree(r));
+
+    printf("\nEnter x-input to predict y using regression: ");
+    scanf("%d", &x_predict);
+
+    regression(x, y, x_predict, num);
 
     free(x); free(y);
     return 0;
@@ -101,6 +104,32 @@ char *relationship_degree(float r_coefficient)
     } else {
         return "Zero Correlation";
     }
+}
+
+void regression(Values *x, Values *y, int x_input, int n)
+{
+    float sum_x = 0, sum_y = 0, sum_xy = 0, sum_x2 = 0, sum_y2 = 0;
+
+    float m_slope, b_intercept, y_output;
+
+    for (int i = 0; i < n; i++) {
+        float x_idx = x[i].data;
+        float y_idx = y[i].data;
+
+        sum_x += x_idx;
+        sum_y += y_idx;
+        sum_xy += x_idx * y_idx;
+        sum_x2 += x_idx * x_idx;
+        sum_y2 += y_idx * y_idx;
+    }
+
+    m_slope = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x * sum_x);
+    b_intercept = (sum_y - m_slope * sum_x) / n;
+    y_output = m_slope * x_input + b_intercept;
+
+    printf("\n=== Linear Regression ===\n");
+    printf("\nRegression Line: y = %.3fx + %.3f\n", m_slope, b_intercept);
+    printf("\nPredicted Regression for Y as X = %d: %.3f\n", x_input, y_output);
 }
 
 
