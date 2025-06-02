@@ -12,11 +12,12 @@ typedef struct {
 
 float correlation(Values *x, Values *y, int n);
 char *relationship_degree(float r_coefficient);
-void linear_regression(Values *x, Values *y, int x_input, int n);
+void linear_regression(Values *x, Values *y, float x_input, int n);
 
 int main()
 {
-    int num, x_predict;
+    int num;
+    float x_predict;
 
     printf("Enter a number of values for both x & y values: ");
     scanf("%d", &num);
@@ -58,7 +59,7 @@ int main()
     printf("Degree of Relationship: %s\n", relationship_degree(r));
 
     printf("\nEnter x-input to predict y using regression: ");
-    scanf("%d", &x_predict);
+    scanf("%f", &x_predict);
 
     linear_regression(x, y, x_predict, num);
 
@@ -106,7 +107,7 @@ char *relationship_degree(float r_coefficient)
     }
 }
 
-void linear_regression(Values *x, Values *y, int x_input, int n)
+void linear_regression(Values *x, Values *y, float x_input, int n)
 {
     float sum_x = 0, sum_y = 0, sum_xy = 0, sum_x2 = 0, sum_y2 = 0;
 
@@ -129,7 +130,7 @@ void linear_regression(Values *x, Values *y, int x_input, int n)
 
     printf("\n=== Linear Regression ===\n");
     printf("\nRegression Line: y = %.3fx + %.3f\n", m_slope, b_intercept);
-    printf("\nPredicted Regression for Y as X = %d: %.3f\n", x_input, y_output);
+    printf("\nPredicted Regression for Y as X = %.3f: %.3f\n", x_input, y_output);
 }
 
 
