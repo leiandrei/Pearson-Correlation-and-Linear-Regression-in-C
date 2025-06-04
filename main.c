@@ -1,17 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
-
-// Pearson Correlation Co-efficient Program
-// Using Structs and Dynamic Memory
-// Sample Program for Statistics
 
 typedef struct {
     float data;
+    char var[80];
 } Values;
 
 float correlation(Values *x, Values *y, int n);
 char *relationship_degree(float r_coefficient);
+char *correlation_type(float r_coefficient);
 void linear_regression(Values *x, Values *y, float x_input, int n);
 
 int main()
@@ -21,6 +20,7 @@ int main()
 
     printf("Enter a number of values for both x & y values: ");
     scanf("%d", &num);
+    while (getchar() != '\n');
 
     Values *x = malloc(num * sizeof(Values));
     Values *y = malloc(num * sizeof(Values));
@@ -30,13 +30,22 @@ int main()
         return 1;
     }
 
-    printf("\nEnter values for Independent Variable (X):\n");
+    printf("\nEnter the (X - Independent Variable) to be tested: ");
+    fgets(x[0].var, sizeof(x[0].var), stdin);
+    x[0].var[strcspn(x[0].var, "\n")] = '\0';
+
+    printf("Enter the (Y - Dependent Variable) to be tested: ");
+    fgets(y[0].var, sizeof(y[0].var), stdin);
+    y[0].var[strcspn(y[0].var, "\n")] = '\0';
+
+    printf("Enter values for Independent Variable (X):\n");
     for (int i = 0; i < num; i++) {
         printf("Value #%d: ", i + 1);
         scanf("%f", &x[i].data);
     }
 
     printf("\nEnter values for Dependent Variable (Y):\n");
+
     for (int i = 0; i < num; i++) {
         printf("Value #%d: ", i + 1);
         scanf("%f", &y[i].data);
@@ -46,15 +55,12 @@ int main()
 
     printf("\n=== Correlation Co-efficient Results ===\n");
 
+    printf("\nIndependent Variable (x): %s\n", x[0].var);
+    printf("\nDependent Variable (y): %s\n", y[0].var);
+
     printf("\nPearson Correlation Co-efficient: %.2f\n", r);
 
-    if (r > 0) {
-        printf("Both x and y values have a positive correlation\n");
-    } else if (r < 0) {
-        printf("Both x and y values have a negative correlation\n");
-    } else {
-        printf("No linear correlation\n");
-    }
+    printf("Correlation Type: %s\n", correlation_type(r));
 
     printf("Degree of Relationship: %s\n", relationship_degree(r));
 
@@ -107,6 +113,17 @@ char *relationship_degree(float r_coefficient)
     }
 }
 
+char *correlation_type(float r_coefficient)
+{
+    if (r_coefficient > 0) {
+        return "Both x and y values have a positive correlation";
+    } else if (r_coefficient < 0) {
+        return "Both x and y values have a negative correlation";
+    } else {
+        return "No linear correlation\n";
+    }
+}
+
 void linear_regression(Values *x, Values *y, float x_input, int n)
 {
     float sum_x = 0, sum_y = 0, sum_xy = 0, sum_x2 = 0, sum_y2 = 0;
@@ -132,5 +149,3 @@ void linear_regression(Values *x, Values *y, float x_input, int n)
     printf("\nRegression Line: y = %.3fx + %.3f\n", m_slope, b_intercept);
     printf("\nPredicted Regression for Y as X = %.3f: %.3f\n", x_input, y_output);
 }
-
-
