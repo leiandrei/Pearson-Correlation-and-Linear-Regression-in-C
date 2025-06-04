@@ -3,15 +3,15 @@
 #include <string.h>
 #include <math.h>
 
-typedef struct {
+typedef struct { // A struct for the correspondng values
     float data;
     char var[80];
 } Values;
 
-float correlation(Values *x, Values *y, int n);
-char *relationship_degree(float r_coefficient);
-char *correlation_type(float r_coefficient);
-void linear_regression(Values *x, Values *y, float x_input, int n);
+float correlation(Values *x, Values *y, int n); // for pearson-correlation
+char *relationship_degree(float r_coefficient); // for correlation analysis
+char *correlation_type(float r_coefficient); // for correlation type
+void linear_regression(Values *x, Values *y, float x_input, int n); // function for linear regression
 
 int main()
 {
@@ -22,6 +22,7 @@ int main()
     scanf("%d", &num);
     while (getchar() != '\n');
 
+    // Memory Allocation for the following values.
     Values *x = malloc(num * sizeof(Values));
     Values *y = malloc(num * sizeof(Values));
 
