@@ -3,6 +3,11 @@
 #include <string.h>
 #include <math.h>
 
+// Future Updates: 
+// Input Function
+// Separate Functions on Print Statements to avoid redundancy
+// Implementing File Handling
+
 typedef struct { // A struct for the correspondng values
     float data;
     char var[80];
