@@ -25,7 +25,7 @@ int main()
 
     printf("Enter a number of values for both x & y values: ");
     scanf("%d", &num);
-    while (getchar() != '\n');
+    getchar();
 
     // Memory Allocation for the following values.
     Values *x = malloc(num * sizeof(Values));
