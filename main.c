@@ -3,9 +3,7 @@
 #include <string.h>
 #include <math.h>
 
-// Future Updates: 
-// Input Function
-// Separate Functions on Print Statements to avoid redundancy
+// FUTURE IMPLEMENTATIONS:
 // Implementing File Handling
 
 typedef struct { // A struct for the correspondng values
@@ -13,10 +11,12 @@ typedef struct { // A struct for the correspondng values
     char var[80];
 } Values;
 
+void input_funct(Values *x, Values *y, int n, float *x_predict);
 float correlation(Values *x, Values *y, int n); // for pearson-correlation
 char *relationship_degree(float r_coefficient); // for correlation analysis
 char *correlation_type(float r_coefficient); // for correlation type
 void linear_regression(Values *x, Values *y, float x_input, int n); // function for linear regression
+void output(Values *x, Values *y, int n, float x_predict);
 
 int main()
 {
@@ -36,6 +36,16 @@ int main()
         return 1;
     }
 
+    input_funct(x, y, num, &x_predict);
+
+    output(x, y, num, x_predict);
+
+    free(x); free(y);
+    return 0;
+}
+
+void input_funct(Values *x, Values *y, int n, float *x_predict)
+{
     printf("\nEnter the (X - Independent Variable) to be tested: ");
     fgets(x[0].var, sizeof(x[0].var), stdin);
     x[0].var[strcspn(x[0].var, "\n")] = '\0';
@@ -45,38 +55,20 @@ int main()
     y[0].var[strcspn(y[0].var, "\n")] = '\0';
 
     printf("Enter values for Independent Variable (X):\n");
-    for (int i = 0; i < num; i++) {
+    for (int i = 0; i < n; i++) {
         printf("Value #%d: ", i + 1);
         scanf("%f", &x[i].data);
     }
 
     printf("\nEnter values for Dependent Variable (Y):\n");
 
-    for (int i = 0; i < num; i++) {
+    for (int i = 0; i < n; i++) {
         printf("Value #%d: ", i + 1);
         scanf("%f", &y[i].data);
     }
 
-    float r = correlation(x, y, num);
-
-    printf("\n=== Correlation Co-efficient Results ===\n");
-
-    printf("\nIndependent Variable (x): %s\n", x[0].var);
-    printf("\nDependent Variable (y): %s\n", y[0].var);
-
-    printf("\nPearson Correlation Co-efficient: %.2f\n", r);
-
-    printf("Correlation Type: %s\n", correlation_type(r));
-
-    printf("Degree of Relationship: %s\n", relationship_degree(r));
-
     printf("\nEnter x-input to predict y using regression: ");
-    scanf("%f", &x_predict);
-
-    linear_regression(x, y, x_predict, num);
-
-    free(x); free(y);
-    return 0;
+    scanf("%f", x_predict);
 }
 
 float correlation(Values *x, Values *y, int n)
@@ -154,4 +146,20 @@ void linear_regression(Values *x, Values *y, float x_input, int n)
     printf("\n=== Linear Regression ===\n");
     printf("\nRegression Line: y = %.3fx + %.3f\n", m_slope, b_intercept);
     printf("\nPredicted Regression for Y as X = %.3f: %.3f\n", x_input, y_output);
+}
+
+void output(Values *x, Values *y, int n, float x_predict)
+{
+    float r = correlation(x, y, n);
+
+    printf("\n=== Correlation Co-efficient Results ===\n");
+
+    printf("\nIndependent Variable (x): %s\n", x[0].var);
+    printf("Dependent Variable (y): %s\n", y[0].var);
+
+    printf("\nPearson Correlation Co-efficient: %.2f\n", r);
+    printf("Correlation Type: %s\n", correlation_type(r));
+    printf("Degree of Relationship: %s\n", relationship_degree(r));
+    
+    linear_regression(x, y, x_predict, n);
 }
