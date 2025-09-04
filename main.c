@@ -3,10 +3,6 @@
 #include <string.h>
 #include <math.h>
 
-// FUTURE IMPLEMENTATIONS:
-// Implementing File Handling
-// Adding Data Metrics: Mean Squared Error, Total Sum Squared, Residual Sum Squared, Co-efficient of Determination
-
 typedef struct { // A struct for the correspondng values
     float data;
     char var[80];
@@ -127,7 +123,10 @@ void linear_regression(Values *x, Values *y, float x_input, int n)
 {
     float sum_x = 0, sum_y = 0, sum_xy = 0, sum_x2 = 0, sum_y2 = 0;
 
-    float m_slope, b_intercept, y_output;
+    float m_slope, b_intercept, y_output, y_mean, y_predict;
+    
+    // Data Metrics
+    float ms_error = 0, ss_total = 0, ss_res = 0, r2;
 
     for (int i = 0; i < n; i++) {
         float x_idx = x[i].data;
@@ -139,14 +138,33 @@ void linear_regression(Values *x, Values *y, float x_input, int n)
         sum_x2 += x_idx * x_idx;
         sum_y2 += y_idx * y_idx;
     }
-
+    
     m_slope = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x * sum_x);
     b_intercept = (sum_y - m_slope * sum_x) / n;
     y_output = m_slope * x_input + b_intercept;
-
+    
+    y_mean = sum_y / n;
+    
+    for (int i = 0; i < n; i++) {
+        y_predict = m_slope * x[i].data + b_intercept;
+        ms_error += pow(y[i].data - y_predict, 2);
+        ss_total += pow(y[i].data - y_mean, 2);
+        ss_res += pow(y[i].data - y_predict, 2);
+    }
+    ms_error /= n;
+    
+    r2 = 1 - (ss_res / ss_total);
+    
     printf("\n=== Linear Regression ===\n");
     printf("\nRegression Line: y = %.3fx + %.3f\n", m_slope, b_intercept);
     printf("\nPredicted Regression for Y as X = %.3f: %.3f\n", x_input, y_output);
+    
+    printf("\n=== Data Metrics ===\n");
+    printf("\nMean Squared Error: %.2f\n", ms_error);
+    printf("\nTotal Sum of Squares: %.2f\n", ss_total);
+    printf("\nResidual Sum of Squares: %.2f\n", ss_res);
+    printf("\nCo-efficient of Determination: %.2f\n", r2);
+    
 }
 
 void output(Values *x, Values *y, int n, float x_predict)
@@ -161,6 +179,6 @@ void output(Values *x, Values *y, int n, float x_predict)
     printf("\nPearson Correlation Co-efficient: %.2f\n", r);
     printf("Correlation Type: %s\n", correlation_type(r));
     printf("Degree of Relationship: %s\n", relationship_degree(r));
-    
+
     linear_regression(x, y, x_predict, n);
 }
