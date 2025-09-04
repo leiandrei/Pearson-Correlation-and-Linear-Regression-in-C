@@ -5,6 +5,7 @@
 
 // FUTURE IMPLEMENTATIONS:
 // Implementing File Handling
+// Adding Data Metrics: Mean Squared Error, Total Sum Squared, Residual Sum Squared, Co-efficient of Determination
 
 typedef struct { // A struct for the correspondng values
     float data;
