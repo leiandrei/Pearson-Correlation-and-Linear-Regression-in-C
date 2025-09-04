@@ -125,7 +125,7 @@ void linear_regression(Values *x, Values *y, float x_input, int n)
 
     float m_slope, b_intercept, y_output, y_mean, y_predict;
     
-    // Data Metrics
+    // Summation of X and Y values
     float ms_error = 0, ss_total = 0, ss_res = 0, r2;
 
     for (int i = 0; i < n; i++) {
@@ -138,13 +138,15 @@ void linear_regression(Values *x, Values *y, float x_input, int n)
         sum_x2 += x_idx * x_idx;
         sum_y2 += y_idx * y_idx;
     }
-    
+
+    // y = mx + b
     m_slope = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x * sum_x);
     b_intercept = (sum_y - m_slope * sum_x) / n;
     y_output = m_slope * x_input + b_intercept;
     
     y_mean = sum_y / n;
-    
+
+    // Data Metrics
     for (int i = 0; i < n; i++) {
         y_predict = m_slope * x[i].data + b_intercept;
         ms_error += pow(y[i].data - y_predict, 2);
