@@ -2,6 +2,7 @@
 
 ## Technologies Used:
 - 🌐 C Language
+- ✅ Standard Math Library (math.h)
 
 This is a **C-Based Language** Pearson Correlation Co-efficient Analyser and Linear Regresion Model made from scratch using C concepts such as: Dynamic Structs and Arrays, Functions, and such. It performs both inferential statistics and analysis using Pearson Correlation and Linear Regression.
 
@@ -21,6 +22,11 @@ This is the Linear Regression formula for this model. The regression model uses 
 - 📌 Uses Dynamic Structs to hold specific data values.
 - 📌 Allows users to input variables and data values.
 - 📌 Clear console output
+
+## Further Improvements:
+- 📌 Implementation of File Handling.
+- 📌 Implementation of Multiple Regression Analysis.
+- 📌 Allowing users to input CSV files and plot using GNUPlot.
 
 ## 💻 Test Run: Input
 ```text
@@ -44,10 +50,8 @@ Value #4: 97
 Value #5: 109
 
 Enter x-input to predict y using regression: 7
-
 ```
-
-## 💻 Test RunL: Output
+## 💻 Test Run: Output
 ```text
 === Correlation Co-efficient Results ===
 
