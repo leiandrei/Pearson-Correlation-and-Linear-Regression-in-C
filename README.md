@@ -13,6 +13,7 @@ This is the **Karl Pearson's Correlation Co-efficient** formula that was used fo
 
 ## ✅ Linear Regression Formula
 This is the Linear Regression formula for this model. The regression model uses an **OLS (Ordinary Least Squares) Regression Analysis**. This analysis aims to create a linear equation to describe relationships between variables. (from **GeeksforGeeks**)
+
 <img width="600" height="432" alt="image" src="https://github.com/user-attachments/assets/960a4a71-2103-48ec-8c7b-831e4af42282" />
 - 📌 This model uses the **y = mx + b** formula.
 - 📌 **Dependent Variable: Y**
