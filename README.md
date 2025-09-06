@@ -9,6 +9,7 @@ This is a **C-Based Language** Pearson Correlation Co-efficient Analyser and Lin
 
 ## ✅ Pearson Correlation Co-efficient Formula
 This is the **Karl Pearson's Correlation Co-efficient** formula that was used for this model.
+
 <img width="600" height="432" alt="image" src="https://github.com/user-attachments/assets/c42393a2-3821-45cd-aac4-caf9318ea7fb" />
 
 ## ✅ Linear Regression Formula
