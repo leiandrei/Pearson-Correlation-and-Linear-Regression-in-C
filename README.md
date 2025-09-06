@@ -81,3 +81,4 @@ Co-efficient of Determination: 1.00
 
 ```
 ## 📈 Test Run: Linear Regression Plot using GNUPlot
+[!Linear Regression](https://github.com/leiandrei/Pearson-Correlation-and-Linear-Regression-in-C/blob/main/linearegression.png)
