@@ -26,6 +26,7 @@ This is the Linear Regression formula for this model. The regression model uses 
 - 📌 Uses Dynamic Structs to hold specific data values.
 - 📌 Allows users to input variables and data values.
 - 📌 Clear console output
+- 📌 Allows visual plotting using GNUPlot.
 
 ## Further Improvements:
 - 📌 Implementation of File Handling.
@@ -81,4 +82,3 @@ Co-efficient of Determination: 1.00
 
 ```
 ## 📈 Test Run: Linear Regression Plot using GNUPlot
-[!Linear Regression](https://github.com/leiandrei/Pearson-Correlation-and-Linear-Regression-in-C/blob/main/linearegression.png)
