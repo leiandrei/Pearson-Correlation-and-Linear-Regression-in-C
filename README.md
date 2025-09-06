@@ -81,5 +81,6 @@ Residual Sum of Squares: 0.00
 Co-efficient of Determination: 1.00
 
 ```
-## 📈 Test Run: Linear Regression Plot using GNUPlot
-![linearregression.png](<img width="640" height="478" alt="image" src="https://github.com/user-attachments/assets/aa3703cd-0dcf-428e-a348-046151838364" />
+## 📈 Sample Linear Regression Plot using GNUPlot
+
+<img width="640" height="478" alt="image" src="https://github.com/user-attachments/assets/aa3703cd-0dcf-428e-a348-046151838364" />
